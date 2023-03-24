@@ -72,7 +72,7 @@
         function updateLabel(inputBox, labelID) {
                 var row = inputBox.parentNode.parentNode;
                 var label = row.cells[8].querySelector('input[type="text"]'); // Changed from label to textbox
-                if (labelID == 'Z') {
+                if (labelID === 'Z') {
                     label.value = SpecimenCreate(inputBox.value.trim());                    
                 } else {
                     label.value = '(' + labelID + ') ' + SpecimenCreate(inputBox.value.trim());
