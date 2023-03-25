@@ -33,12 +33,23 @@
         table {
             margin: 0 auto;
             text-align: center;
+            border-collapse: collapse;
+            border: 1px solid black;
         }
     
         td {
-            padding: 2px;
+            padding: 0px;
         }
-    
+        
+        tr:nth-child(odd) {
+            background-color: #f0f2e7;
+        }
+
+        th:nth-child(3), td:nth-child(14) {
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+        }    
+        
         button {
         display: block;
         margin: 0 auto;
@@ -90,6 +101,7 @@
                 return "xxx please see format above";
             }
         }
+
         function ProcessString(value) {
 
             if (value.length == 3) {
@@ -198,6 +210,20 @@
         navigator.clipboard.writeText(textvalue);
     }
 
+    function divider() {
+			var tmps = document.getElementById("inputuser").value;
+			console.log("Input string: " + tmps);
+			
+			var strings = tmps.split(",");
+			for (var i = 0; i < strings.length && i < 15; i++) {
+				var textBoxId = "G" + String.fromCharCode(65 + i);
+				document.getElementById(textBoxId).value = strings[i];
+                updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
+			}
+
+            CopyAll();
+		}
+
     </script>
 </head>
 
@@ -208,14 +234,27 @@
         <p>$ refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
         <p>% refers to number of blocks embedded (0-9)</p>
         <p>& is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
-        <p></p>
+        <br>
+        <p><b>For Rapid Generator Command, use "," as separator</b></p>
+        <p>For example: 101,201,0m1,m01,m01t,101s</p>
         <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
-    <table>
-        <tr>
-            <td><button onclick="CopyAll()" style="font-size:20px; width:400px; height:100px;">Copy All Specimens</button></td>
-            <td><button onclick="location.reload()" style="font-size:10px; width:50px; height:50px;">Clear Form</button></td>
-        </tr>
-    </table>
+        <br>
+
+        <table>
+            <tr><th colspan="2">Rapid Generator Command</th></tr>
+            <tr>
+                <td><input type="text" size = "60" id="inputuser" autofocus></td>
+                <td><button type="button" id="execute" onclick="divider()">Assign & Copy All</button></td>
+            </tr>
+        </table>
+        <br> 
+        <table>
+            <tr>
+                <td><button onclick="CopyAll()" style="font-size:20px; width:400px; height:100px;">Copy All Specimens</button></td>
+                <td><button onclick="location.reload()" style="font-size:10px; width:50px; height:50px;">Clear Form</button></td>
+            </tr>
+        </table>
+        <br>
     <table>
         <tr>
             <th>101</th>
@@ -430,6 +469,19 @@
         <p style="font-size: 20px;">Table 2. Single Specimen</p>
     <Table>
         <tr>
+            <th>101</th>
+            <th>201</th>
+            <th>111</th>
+            <th>1u1</th>
+            <th>m01</th>
+            <th>0m1</th>
+            <th>Label</th>
+            <th>Text Input Box</th>
+            <th>Output Label Box</th>
+            <th>CopyRow</th>
+            <th>ClearRow</th>
+        </tr>
+        <tr>
             <td><button onclick="updateInputBox(this, 'Z', '101');">101</button></td>
             <td><button onclick="updateInputBox(this, 'Z', '201');">201</button></td>
             <td><button onclick="updateInputBox(this, 'Z', '111');">111</button></td>
@@ -443,27 +495,27 @@
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
     </Table>
-    <h2>Other commonly used phrases</h2> 
-    <p></p>
-    <button onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in 1 block.</button>
-    <p></p>
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1 block.</button>
+    <h1>Other commonly used phrases</h1> 
 
-    <p>------------------------------------</p>
-    <p>This form is designed by WH Lau 2023</p>
-    <p>For Generation of All embed Gross Description </p>
-    <p>Please contact me for any comments. Thanks.</p>
-    <p>------------------------------------</p>
-    <p></p>
+    <button onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
+    <br>    
+    <button onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
+    <br>  
+    <button onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
+    <br>  
+    <button onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1 block.</button>
+    <br>  
+    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1 block.</button>
+    <br>  
+    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in 1 block.</button>
+    <br>  
+    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1 block.</button>
+    <footer>
+        <p>------------------------------------</p>
+        <p>This form is designed by WH Lau 2023</p>
+        <p>For Generation of All embed Gross Description </p>
+        <p>Please contact me for any comments. Thanks.</p>
+        <p>------------------------------------</p>
+    </footer>
 </body>
 </html>
