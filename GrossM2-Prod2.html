@@ -267,7 +267,6 @@
         <p><b>For Rapid Generator Command, use "," as separator</b></p>
         <p>For example: 101,201,0m1,m01,m01t,101s</p>
         <br>
-        <br>
         <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
 
         <table>
@@ -281,7 +280,7 @@
         
         <table>
             <tr>
-                <td><button onclick="CopyAll()" style="font-size:20px; width:400px; height:100px;">Copy All Specimens</button></td>
+                <td><button onclick="CopyAll()" style="font-size:15px; width:200px; height:50px;">Copy All Specimens</button></td>
                 <td><button onclick="location.reload()" style="font-size:10px; width:50px; height:50px;">Clear Form</button></td>
             </tr>
         </table>
@@ -528,24 +527,26 @@
     </Table>
     <h1>Other commonly used phrases</h1> 
 
-    <button onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
-    <br>    
-    <button onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
-    <br>  
-    <button onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
-    <br>  
-    <button onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1 block.</button>
-    <br>  
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1 block.</button>
-    <br>  
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in 1 block.</button>
-    <br>  
-    <button onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1 block.</button>
-    <footer>
+    <div style="text-align: center;">
+        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
+        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
+        <button style = "display: inline-block;" onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1 block.</button>
+        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1 block.</button>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button style = "display: inline-block;" onclick="CopyCPT('Scanty tiny fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in 1 block.</button>
+        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Scanty fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1 block.</button>
+    </div>
+   <footer>
         <p>------------------------------------</p>
-        <p>This form is designed by WH Lau 2023</p>
+        <p>This HTML and Javascript are designed by WH Lau 2023</p>
         <p>For Generation of All embed Gross Description </p>
-        <p>Please contact me for any comments. Thanks.</p>
+        <p>Please contact me if there are bugs or any comments. Thanks.</p>
         <p>------------------------------------</p>
     </footer>
 </body>
