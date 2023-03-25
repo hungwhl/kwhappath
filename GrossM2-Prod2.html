@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!--Programme designed and written by WH Lau 25.3.2023-->
 <html>
-
 <head>
     <title>All Embed Gross Description Generator</title>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
         }
     
         p {
-            margin: 20px;
+            margin: 5px;
             text-align: center;
         }
     
@@ -45,7 +45,7 @@
             background-color: #f0f2e7;
         }
 
-        th:nth-child(3), td:nth-child(14) {
+        th:nth-child(8), td:nth-child(8) {
             border-left: 2px solid black;
             border-right: 2px solid black;
         }    
@@ -123,7 +123,7 @@
                 tmpstrA = "All embedded in " + tmpA + " blocks.";
             }
 
-            let tmpstrB = "";
+            let tmpstrB = ""; 
             if (tmpB === 'm' || tmpB === 'M') {
                 tmpstrB = "Multiple pieces";
             } else if (tmpB === 'u' || tmpB === 'U') {
@@ -184,7 +184,12 @@
         var labelBox = row.cells[8].querySelector('input[type="text"]');
         //labelBox.select();
         //document.execCommand("copy");
-        navigator.clipboard.writeText(labelBox.value);
+        if (labelBox.value === '') {
+            statustextcopied('0');            
+        } else {
+            navigator.clipboard.writeText(labelBox.value);
+            statustextcopied('1');
+        };   
     }
 
     function CopyAll() {
@@ -197,7 +202,24 @@
         });
         if (textToCopy) {
             navigator.clipboard.writeText(textToCopy);
-        }
+            statustextcopied('1');
+        } else {
+            statustextcopied('0');
+        };
+    }
+
+    function statustextcopied(state) {
+        if (state === '1') {
+            document.getElementById("statustext").value='Copied!';
+            setTimeout(function() {
+                document.getElementById("statustext").value='';
+            }, 1000);
+        } else { // i.e. === '0'
+            document.getElementById("statustext").value='Nothing copied?';
+            setTimeout(function() {
+                document.getElementById("statustext").value='';
+            }, 1000);
+        };
     }
 
     function clearRow(button) {
@@ -208,19 +230,26 @@
 
     function CopyCPT(textvalue) {
         navigator.clipboard.writeText(textvalue);
+        statustextcopied('1');
     }
 
     function divider() {
 			var tmps = document.getElementById("inputuser").value;
-			console.log("Input string: " + tmps);
-			
+			//console.log("Input string: " + tmps);
+			if (tmps === '') {
+                statustextcopied('0');
+                return;
+            }
 			var strings = tmps.split(",");
-			for (var i = 0; i < strings.length && i < 15; i++) {
-				var textBoxId = "G" + String.fromCharCode(65 + i);
-				document.getElementById(textBoxId).value = strings[i];
-                updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
-			}
-
+			for (var i = 0; i < 15; i++) {
+				if (i < strings.length) {
+                    var textBoxId = "G" + String.fromCharCode(65 + i);
+				    document.getElementById(textBoxId).value = strings[i];
+                    updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
+                } else {
+                    document.getElementById("G" + String.fromCharCode(65 + i)).value='';
+                    document.getElementById("L" + String.fromCharCode(65 + i)).value='';
+                }};
             CopyAll();
 		}
 
@@ -229,25 +258,27 @@
 
 <body>
     <h1>All Embed Gross Description Generator</h1>
-        <p>The format of the input is either 3 character format #$% or 4 character format #$%&.</p>
-        <p># refers to number of pieces (0-9, m = multiple, u = unspecified)</p>
-        <p>$ refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
-        <p>% refers to number of blocks embedded (0-9)</p>
-        <p>& is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
+        <p>The format of the input is either 3 character format <b><u>#$%</u></b> or 4 character format <b><u>#$%&</u></b>.</p>
+        <p><b><u>#</u></b> refers to number of pieces (0-9, m = multiple, u = unspecified)</p>
+        <p><b><u>$</u></b> refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
+        <p><b><u>%</u></b> refers to number of blocks embedded (0-9)</p>
+        <p><b><u>&</u></b> is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
         <br>
-        <p><b>Command line for quick generation of description - use "," as separator</b></p>
+        <p><b>For Rapid Generator Command, use "," as separator</b></p>
         <p>For example: 101,201,0m1,m01,m01t,101s</p>
-        <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
         <br>
+        <br>
+        <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
 
         <table>
-            <tr><th colspan="2">Command line for quick generation of description</th></tr>
+            <tr><th colspan="2">Rapid Generator Command</th></tr>
             <tr>
-                <td><input style="font-size:medium" type="text" size = "60" id="inputuser" autofocus></td>
+                <td><input type="text" style="font-size:medium" size = "60" id="inputuser" autofocus></td>
                 <td><button type="button" id="execute" onclick="divider()">Assign & Copy All</button></td>
             </tr>
+            <tr><td colspan="2"><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)" id="statustext"></td></tr>
         </table>
-        <br> 
+        
         <table>
             <tr>
                 <td><button onclick="CopyAll()" style="font-size:20px; width:400px; height:100px;">Copy All Specimens</button></td>
@@ -488,7 +519,7 @@
             <td><button onclick="updateInputBox(this, 'Z', '1u1');">1u1</button></td>
             <td><button onclick="updateInputBox(this, 'Z', 'm01');">m01</button></td>
             <td><button onclick="updateInputBox(this, 'Z', '0m1');">0m1</button></td>
-            <td>Single</td>
+            <td>---</td>
             <td><input type="text" id="GZ" size="10" onblur="updateLabel(this,  'Z');"></td>
             <td><input type="text" size="40" id="LZ"></td>
             <td><button onclick="CopyRow(this)">CopyRow</button></td>
@@ -516,6 +547,6 @@
         <p>For Generation of All embed Gross Description </p>
         <p>Please contact me for any comments. Thanks.</p>
         <p>------------------------------------</p>
-    </footer> 
+    </footer>
 </body>
 </html>
