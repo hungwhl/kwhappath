@@ -103,8 +103,7 @@
             } else if (value.length == 4 && (/^[0-9muMU]+$/.test(value.charAt(0))) && (/^[0-9muMU]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2))) && (/^[smtSMT]$/.test(value.charAt(3)))) {
                 return ProcessString(value);
             } else {
-                return value; //user-defined text
-                //return "xxx please see format above";
+                return value; //user defined text
             }
         }
 
@@ -571,7 +570,7 @@
     </div>
     <br>
     <div style="text-align: center;">
-        <button style="display: inline-block;"
+        <button style="display: inline-block; margin-right: 10px;"
             onclick="CopyCPT('Scanty tiny fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in
             1 block.</button>
         <button style="display: inline-block; margin-right: 10px;"
