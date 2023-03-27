@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--Programme designed and written by WH Lau 25.3.2023-->
 <html>
+
 <head>
     <title>All Embed Gross Description Generator</title>
     <meta charset="UTF-8">
@@ -12,65 +13,69 @@
             margin: 0;
             padding: 0;
         }
-    
-        h1,h2 {
+
+        h1,
+        h2 {
             font-size: 24px;
             font-weight: normal;
             margin: 20px;
             text-align: center;
         }
-    
+
         p {
             margin: 5px;
             text-align: center;
         }
-    
+
         form {
             margin: 10px;
             text-align: center;
         }
-    
+
         table {
             margin: 0 auto;
             text-align: center;
             border-collapse: collapse;
             border: 1px solid black;
         }
-    
+
         td {
             padding: 0px;
         }
-        
+
         tr:nth-child(odd) {
             background-color: #f0f2e7;
         }
 
-        th:nth-child(8), td:nth-child(8) {
+        th:nth-child(8),
+        td:nth-child(8) {
             border-left: 2px solid black;
             border-right: 2px solid black;
-        }    
-        
-        button {
-        display: block;
-        margin: 0 auto;
         }
-        
+
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+
         .button-container {
             display: flex;
             justify-content: center;
         }
+
         buttonA {
-            font-size:20px;
-            height:100px;
+            font-size: 20px;
+            height: 100px;
             margin: 100px;
         }
+
         buttonA:first-child {
             width: 400px;
         }
+
         buttonA:last-child {
             width: 100px;
         }
-
     </style>
     <script>
         function updateInputBox(button, labelID, value) {
@@ -81,13 +86,13 @@
         }
 
         function updateLabel(inputBox, labelID) {
-                var row = inputBox.parentNode.parentNode;
-                var label = row.cells[8].querySelector('input[type="text"]'); // Changed from label to textbox
-                if (labelID === 'Z') {
-                    label.value = SpecimenCreate(inputBox.value.trim());                    
-                } else {
-                    label.value = '(' + labelID + ') ' + SpecimenCreate(inputBox.value.trim());
-                }
+            var row = inputBox.parentNode.parentNode;
+            var label = row.cells[8].querySelector('input[type="text"]'); // Changed from label to textbox
+            if (labelID === 'Z') {
+                label.value = SpecimenCreate(inputBox.value.trim());
+            } else {
+                label.value = '(' + labelID + ') ' + SpecimenCreate(inputBox.value.trim());
+            }
         }
 
         function SpecimenCreate(value) {
@@ -123,7 +128,7 @@
                 tmpstrA = "All embedded in " + tmpA + " blocks.";
             }
 
-            let tmpstrB = ""; 
+            let tmpstrB = "";
             if (tmpB === 'm' || tmpB === 'M') {
                 tmpstrB = "Multiple pieces";
             } else if (tmpB === 'u' || tmpB === 'U') {
@@ -179,112 +184,130 @@
             return tmpoutput
         }
 
-    function CopyRow(button) {
-        var row = button.parentNode.parentNode;
-        var labelBox = row.cells[8].querySelector('input[type="text"]');
-        //labelBox.select();
-        //document.execCommand("copy");
-        if (labelBox.value === '') {
-            statustextcopied('0');            
-        } else {
-            navigator.clipboard.writeText(labelBox.value);
+        function CopyRow(button) {
+            var row = button.parentNode.parentNode;
+            var labelBox = row.cells[8].querySelector('input[type="text"]');
+            //labelBox.select();
+            //document.execCommand("copy");
+            if (labelBox.value === '') {
+                statustextcopied('0');
+            } else {
+                navigator.clipboard.writeText(labelBox.value);
+                statustextcopied('1');
+            };
+        }
+
+        function CopyAll() {
+            var labelBoxes = document.querySelectorAll('#LA, #LB, #LC, #LD, #LE, #LF, #LG, #LH, #LI, #LJ, #LK, #LL, #LM, #LN, #LO');
+            var textToCopy = '';
+            labelBoxes.forEach(function (labelBox) {
+                if (labelBox.value) {
+                    textToCopy += labelBox.value + '\n';
+                }
+            });
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy);
+                statustextcopied('1');
+            } else {
+                statustextcopied('0');
+            };
+            return;
+        }
+
+        function statustextcopied(state) {
+            if (state === '1') {
+                document.getElementById("statustext").value = 'Copied!';
+                setTimeout(function () {
+                    document.getElementById("statustext").value = '';
+                }, 1000);
+            } else { // i.e. === '0'
+                document.getElementById("statustext").value = 'Nothing copied?';
+                setTimeout(function () {
+                    document.getElementById("statustext").value = '';
+                }, 1000);
+            };
+        }
+
+        function clearRow(button) {
+            var row = button.parentNode.parentNode;
+            row.cells[7].querySelector('input[type="text"]').value = "";
+            row.cells[8].querySelector('input[type="text"]').value = "";
+        }
+
+        function CopyCPT(textvalue) {
+            navigator.clipboard.writeText(textvalue);
             statustextcopied('1');
-        };   
-    }
+        }
 
-    function CopyAll() {
-        var labelBoxes = document.querySelectorAll('#LA, #LB, #LC, #LD, #LE, #LF, #LG, #LH, #LI, #LJ, #LK, #LL, #LM, #LN, #LO');
-        var textToCopy = '';
-        labelBoxes.forEach(function (labelBox) {
-            if (labelBox.value) {
-                textToCopy += labelBox.value + '\n';
-            }
-        });
-        if (textToCopy) {
-            navigator.clipboard.writeText(textToCopy);
-            statustextcopied('1');
-        } else {
-            statustextcopied('0');
-        };
-    }
-
-    function statustextcopied(state) {
-        if (state === '1') {
-            document.getElementById("statustext").value='Copied!';
-            setTimeout(function() {
-                document.getElementById("statustext").value='';
-            }, 1000);
-        } else { // i.e. === '0'
-            document.getElementById("statustext").value='Nothing copied?';
-            setTimeout(function() {
-                document.getElementById("statustext").value='';
-            }, 1000);
-        };
-    }
-
-    function clearRow(button) {
-        var row = button.parentNode.parentNode;
-        row.cells[7].querySelector('input[type="text"]').value = "";
-        row.cells[8].querySelector('input[type="text"]').value = "";
-    }
-
-    function CopyCPT(textvalue) {
-        navigator.clipboard.writeText(textvalue);
-        statustextcopied('1');
-    }
-
-    function divider() {
-			var tmps = document.getElementById("inputuser").value;
-			//console.log("Input string: " + tmps);
-			if (tmps === '') {
+        function divider() {
+            var tmps = document.getElementById("inputuser").value;
+            //console.log("Input string: " + tmps);
+            if (tmps === '') {
                 statustextcopied('0');
                 return;
             }
-			var strings = tmps.split(",");
-			for (var i = 0; i < 15; i++) {
-				if (i < strings.length) {
-                    var textBoxId = "G" + String.fromCharCode(65 + i);
-				    document.getElementById(textBoxId).value = strings[i];
-                    updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
-                } else {
-                    document.getElementById("G" + String.fromCharCode(65 + i)).value='';
-                    document.getElementById("L" + String.fromCharCode(65 + i)).value='';
-                }};
-            CopyAll();
-		}
+            var strings = tmps.split(",");
+
+            if (strings.length === 1) {
+                //console.log(strings.length)
+                document.getElementById('GZ').value = strings[0];
+                updateInputBox(document.getElementById('GZ'), 'Z', strings[0]);
+                CopyRow(document.getElementById('singlespec'));
+            } else {
+                for (var i = 0; i < 15; i++) {
+                    if (i < strings.length) {
+                        var textBoxId = "G" + String.fromCharCode(65 + i);
+                        document.getElementById(textBoxId).value = strings[i];
+                        updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
+                    } else {
+                        document.getElementById("G" + String.fromCharCode(65 + i)).value = '';
+                        document.getElementById("L" + String.fromCharCode(65 + i)).value = '';
+                    }
+                };
+                CopyAll();
+            }
+        }
 
     </script>
 </head>
 
 <body>
     <h1>All Embed Gross Description Generator</h1>
-        <p>The format of the input is either 3 character format <b><u>#$%</u></b> or 4 character format <b><u>#$%&</u></b>.</p>
-        <p><b><u>#</u></b> refers to number of pieces (0-9, m = multiple, u = unspecified)</p>
-        <p><b><u>$</u></b> refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
-        <p><b><u>%</u></b> refers to number of blocks embedded (0-9)</p>
-        <p><b><u>&</u></b> is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
-        <br>
-        <p><b>For Rapid Generator Command, use "," as separator</b></p>
-        <p>For example: 101,201,0m1,m01,m01t,101s</p>
-        <br>
-        <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
+    <p>The format of the input is either 3 character format <b><u>#$%</u></b> or 4 character format <b><u>#$%&</u></b>.
+    </p>
+    <p><b><u>#</u></b> refers to number of pieces (0-9, m = multiple, u = unspecified)</p>
+    <p><b><u>$</u></b> refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
+    <p><b><u>%</u></b> refers to number of blocks embedded (0-9)</p>
+    <p><b><u>&</u></b> is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
+    <br>
+    <p><b>For Rapid Generator Command, use "," as separator</b></p>
+    <p>For example: 101,201,0m1,m01,m01t,101s</p>
+    <br>
+    <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
 
-        <table>
-            <tr><th colspan="2">Rapid Generator Command</th></tr>
-            <tr>
-                <td><input type="text" style="font-size:medium" size = "60" id="inputuser" autofocus></td>
-                <td><button type="button" id="execute" onclick="divider()">Assign & Copy All</button></td>
-            </tr>
-            <tr><td colspan="2"><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)" id="statustext"></td></tr>
-        </table>
-        
-        <table>
-            <tr>
-                <td><button onclick="CopyAll()" style="font-size:15px; width:200px; height:50px;">Copy All Specimens</button></td>
-                <td><button onclick="location.reload()" style="font-size:10px; width:50px; height:50px;">Clear Form</button></td>
-            </tr>
-        </table>
-        <br>
+    <table>
+        <tr>
+            <th colspan="2">Rapid Generator Command</th>
+        </tr>
+        <tr>
+            <td><input type="text" style="font-size:medium" size="60" id="inputuser" autofocus></td>
+            <td><button type="button" id="execute" onclick="divider()">Assign & Copy</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)"
+                    id="statustext"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td><button onclick="CopyAll()" style="font-size:15px; width:200px; height:50px;">Copy All
+                    Specimens A to .X.</button></td>
+            <td><button onclick="location.reload()" style="font-size:12px; width:100px; height:50px;">Clear Entire Form / F5</button>
+            </td>
+        </tr>
+    </table>
+    <br>
     <table>
         <tr>
             <th>101</th>
@@ -307,8 +330,8 @@
             <td><button onclick="updateInputBox(this, 'A', 'm01');">m01</button></td>
             <td><button onclick="updateInputBox(this, 'A', '0m1');">0m1</button></td>
             <td>(A)</td>
-            <td><input type="text" id="GA" size = "10" onblur="updateLabel(this, 'A');"></td>
-            <td><input type="text"  size = "40" id="LA"></td>
+            <td><input type="text" id="GA" size="10" onblur="updateLabel(this, 'A');"></td>
+            <td><input type="text" size="40" id="LA"></td>
             <td><button onclick="CopyRow(this)">CopyRow</button></td>
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
@@ -320,8 +343,8 @@
             <td><button onclick="updateInputBox(this, 'B', 'm01');">m01</button></td>
             <td><button onclick="updateInputBox(this, 'B', '0m1');">0m1</button></td>
             <td>(B)</td>
-            <td><input type="text" id="GB" size = "10" onblur="updateLabel(this, 'B');"></td>
-            <td><input type="text" size = "40" id="LB"></td>
+            <td><input type="text" id="GB" size="10" onblur="updateLabel(this, 'B');"></td>
+            <td><input type="text" size="40" id="LB"></td>
             <td><button onclick="CopyRow(this)">CopyRow</button></td>
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
@@ -333,8 +356,8 @@
             <td><button onclick="updateInputBox(this, 'C', 'm01');">m01</button></td>
             <td><button onclick="updateInputBox(this, 'C', '0m1');">0m1</button></td>
             <td>(C)</td>
-            <td><input type="text" id="GC" size = "10" onblur="updateLabel(this,  'C');"></td>
-            <td><input type="text" size = "40" id="LC"></td>
+            <td><input type="text" id="GC" size="10" onblur="updateLabel(this,  'C');"></td>
+            <td><input type="text" size="40" id="LC"></td>
             <td><button onclick="CopyRow(this)">CopyRow</button></td>
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
@@ -346,8 +369,8 @@
             <td><button onclick="updateInputBox(this, 'D', 'm01');">m01</button></td>
             <td><button onclick="updateInputBox(this, 'D', '0m1');">0m1</button></td>
             <td>(D)</td>
-            <td><input type="text" id="GD" size = "10" onblur="updateLabel(this,  'D');"></td>
-            <td><input type="text" size = "40" id="LD"></td>
+            <td><input type="text" id="GD" size="10" onblur="updateLabel(this,  'D');"></td>
+            <td><input type="text" size="40" id="LD"></td>
             <td><button onclick="CopyRow(this)">CopyRow</button></td>
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
@@ -495,8 +518,8 @@
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
     </table>
-        <p></p>
-        <p style="font-size: 20px;">Table 2. Single Specimen</p>
+    <p></p>
+    <p style="font-size: 20px;">Table 2. Single Specimen</p>
     <Table>
         <tr>
             <th>101</th>
@@ -521,28 +544,39 @@
             <td>---</td>
             <td><input type="text" id="GZ" size="10" onblur="updateLabel(this,  'Z');"></td>
             <td><input type="text" size="40" id="LZ"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button onclick="CopyRow(this)" id="singlespec">CopyRow</button></td>
             <td><button onclick="clearRow(this)">clearRow</button></td>
         </tr>
     </Table>
-    <h1>Other commonly used phrases</h1> 
+    <h1>Other commonly used phrases</h1>
 
     <div style="text-align: center;">
-        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
-        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
-        <button style = "display: inline-block;" onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
+        <button style="display: inline-block; margin-right: 10px;"
+            onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
+        <button style="display: inline-block; margin-right: 10px;"
+            onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
+        <button style="display: inline-block;" onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple
+            pieces. All embedded in 1 block.</button>
     </div>
     <br>
     <div style="text-align: center;">
-        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1 block.</button>
-        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1 block.</button>
+        <button style="display: inline-block; margin-right: 10px;"
+            onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1
+            block.</button>
+        <button style="display: inline-block; margin-right: 10px;"
+            onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1
+            block.</button>
     </div>
     <br>
     <div style="text-align: center;">
-        <button style = "display: inline-block;" onclick="CopyCPT('Scanty tiny fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in 1 block.</button>
-        <button style = "display: inline-block; margin-right: 10px;" onclick="CopyCPT('Scanty fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1 block.</button>
+        <button style="display: inline-block;"
+            onclick="CopyCPT('Scanty tiny fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in
+            1 block.</button>
+        <button style="display: inline-block; margin-right: 10px;"
+            onclick="CopyCPT('Scanty fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1
+            block.</button>
     </div>
-   <footer>
+    <footer>
         <p>------------------------------------</p>
         <p>This HTML and Javascript are designed by WH Lau 2023</p>
         <p>For Generation of All embed Gross Description </p>
@@ -550,4 +584,5 @@
         <p>------------------------------------</p>
     </footer>
 </body>
+
 </html>
