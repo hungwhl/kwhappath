@@ -103,7 +103,8 @@
             } else if (value.length == 4 && (/^[0-9muMU]+$/.test(value.charAt(0))) && (/^[0-9muMU]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2))) && (/^[smtSMT]$/.test(value.charAt(3)))) {
                 return ProcessString(value);
             } else {
-                return "xxx please see format above";
+                return value; //user-defined text
+                //return "xxx please see format above";
             }
         }
 
@@ -216,12 +217,12 @@
 
         function statustextcopied(state) {
             if (state === '1') {
-                document.getElementById("statustext").value = 'Copied!';
+                document.getElementById("statustext").value = 'Copied to Clipboard!';
                 setTimeout(function () {
                     document.getElementById("statustext").value = '';
                 }, 1000);
             } else { // i.e. === '0'
-                document.getElementById("statustext").value = 'Nothing copied?';
+                document.getElementById("statustext").value = 'Nothing copied to Clipboard?';
                 setTimeout(function () {
                     document.getElementById("statustext").value = '';
                 }, 1000);
