@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWH Molecular SendOut</title>
+    <script src="bwip/bwip-js-min.js"></script>
+    <style>
+        footer {
+            font-size: small;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1,
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin: 10px;
+            text-align: left;
+        }
+
+        p {
+            margin: 10px;
+            text-align: left;
+        }
+
+        form {
+            margin: 10px;
+            text-align: left;
+        }
+
+        section {
+            margin: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>KWH Molecular SendOut</h1>
+    <section>
+        <div class="section-title">Section 1: KWH Diagnosis & Specimen 2D barcode generator</div>
+        <form>
+            <label for="DiagnosisDesc">Diagnosis Description:</label><br>
+            <textarea id="DiagnosisDesc" rows="7" style="width:100ch"></textarea><br>
+            <br>
+            <label for="CaseNo">Laboratory number:</label><br>
+            <textarea id="CaseNo" rows="1" style="width:50ch"></textarea><br>
+            <br>
+            <button type="button" id="GenerateBarCode" onclick="GenerateBarCode2D()">Generate Barcode</button>
+            <br>
+        </form>
+        <div style="height: 1rem;"></div>
+        <div>
+            <canvas id="barcode" width="200" height="200"></canvas>
+        </div>
+        <div style="height: 1rem;"></div>
+    </section>
+    <section>
+        <div class="section-title">Section 2: KWH Molecular SendOut-related</div>
+        <form>
+            <br>
+            <button type="button" onclick="copyToClipboard(this)">A) This specimen is sent out to the QEH for slide review +/- further molecular testing such as EGFR gene mutational assay. Please refer to ePR for further information.</button><br><br>
+            <button type="button" onclick="copyToClipboard(this)">B) This specimen is selected to be sent out for QEH to consider lung cancer molecular panel test.</button><br><br>
+            <button type="button" onclick="copyToClipboard(this)">C) Other</button><br><br>
+            <button type="button" onclick="copyToClipboard(this)">D) Hello</button>
+        </form>
+    </section>
+    <footer>
+        This page uses a 2D barcode JS library from BWIP. <a href="https://github.com/metafloor/bwip-js"
+            target="_blank">https://github.com/metafloor/bwip-js</a>
+    </footer>
+    <script>
+        function GenerateBarCode2D() {
+            let description = document.getElementById("DiagnosisDesc").value;
+            const caseNo = document.getElementById("CaseNo").value;
+            let tmpLabNo = '';
+
+            if (description) {
+                if (caseNo) {
+                    tmpLabNo = ` ( ${caseNo} from Kwong Wah Hospital )`;
+                }
+
+                let colonIndex = description.indexOf(':');
+                let dashIndex = description.indexOf('-');
+
+                if (colonIndex !== -1) {
+                    description = description.slice(0, colonIndex) + tmpLabNo + description.slice(colonIndex);
+                } else if (dashIndex !== -1) {
+                    description = description.slice(0, dashIndex) + tmpLabNo + description.slice(dashIndex);
+                } else {
+                    description += tmpLabNo;
+                }
+                bwipjs.toCanvas(document.getElementById('barcode'), {
+                    bcid: 'qrcode', // Use 'qrcode' for QR Code, 'datamatrix' for Data Matrix
+                    text: description,
+                    scale: 2,
+                    eclevel: 'L', // Error correction level: L, M, Q, or H
+                    includetext: false,
+                    backgroundcolor: "FFFFFF", // Background color (hexadecimal)
+                    foregroundcolor: "000000", // Foreground color (hexadecimal)
+                });
+                setTimeout(function () {
+                    alert('The following text is generated in the 2D barcode' + '\n' + 'Scan it to quickly incoporate the text' + '\n\n' + description);}, 100);
+                console.log(description);
+            } else {
+                alert("Please enter a diagnosis description.");
+            }
+        }
+        function copyToClipboard(button) {
+                const text = button.textContent;
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert("Text copied to clipboard: " + text);
+        }
+    </script>
+</body>
+
+</html>
