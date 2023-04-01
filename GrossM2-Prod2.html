@@ -6,6 +6,7 @@
     <title>All Embed Gross Description Generator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,7 +37,7 @@
             margin: 0 auto;
             text-align: center;
             border-collapse: collapse;
-            border: 1px solid black;
+/*             border: 0px solid black; */
         }
 
         td {
@@ -44,14 +45,14 @@
         }
 
         tr:nth-child(odd) {
-            background-color: #f0f2e7;
+            background-color: #c9bdc32a;
         }
 
-        th:nth-child(8),
+/*         th:nth-child(8),
         td:nth-child(8) {
             border-left: 2px solid black;
             border-right: 2px solid black;
-        }
+        } */
 
         button {
             display: block;
@@ -77,6 +78,8 @@
             width: 100px;
         }
     </style>
+
+    <script src="js/bootstrap.bundle.js"></script>
     <script>
         function updateInputBox(button, labelID, value) {
             var row = button.parentNode.parentNode;
@@ -228,7 +231,7 @@
             };
         }
 
-        function clearRow(button) {
+        function ClearRow(button) {
             var row = button.parentNode.parentNode;
             row.cells[7].querySelector('input[type="text"]').value = "";
             row.cells[8].querySelector('input[type="text"]').value = "";
@@ -290,7 +293,7 @@
         </tr>
         <tr>
             <td><input type="text" style="font-size:medium" size="60" id="inputuser" autofocus></td>
-            <td><button type="button" id="execute" onclick="divider()">Assign & Copy</button></td>
+            <td><button type="button" class="btn btn-outline-primary" style="font-size:15px;" id="execute" onclick="divider()">Assign & Copy</button></td>
         </tr>
         <tr>
             <td colspan="2"><label for="statustext">Status: </label><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)"
@@ -301,9 +304,9 @@
     <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
     <table>
         <tr>
-            <td><button onclick="CopyAll()" style="font-size:15px; width:200px; height:50px;">Copy All
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyAll()" style="font-size:15px; width:200px; height:50px;">Copy All
                     Specimens <br />(A) to (.X.)</button></td>
-            <td><button onclick="location.reload()" style="font-size:12px; width:100px; height:50px;">Clear Entire Form / F5</button>
+            <td><button class="btn btn-outline-danger btn-sm" onclick="location.reload()" style="font-size:15px; width:100px; height:50px;">Clear Entire Form / F5</button>
             </td>
         </tr>
     </table>
@@ -323,199 +326,199 @@
             <th>ClearRow</th>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'A', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'A', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'A', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'A', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'A', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'A', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'A', '0m1');">0m1</button></td>
             <td>(A)</td>
             <td><input type="text" id="GA" size="10" onblur="updateLabel(this, 'A');"></td>
             <td><input type="text" size="40" id="LA"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'B', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'B', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'B', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'B', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'B', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'B', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'B', '0m1');">0m1</button></td>
             <td>(B)</td>
             <td><input type="text" id="GB" size="10" onblur="updateLabel(this, 'B');"></td>
             <td><input type="text" size="40" id="LB"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'C', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'C', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'C', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'C', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'C', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'C', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'C', '0m1');">0m1</button></td>
             <td>(C)</td>
             <td><input type="text" id="GC" size="10" onblur="updateLabel(this,  'C');"></td>
             <td><input type="text" size="40" id="LC"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'D', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'D', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'D', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'D', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'D', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'D', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'D', '0m1');">0m1</button></td>
             <td>(D)</td>
             <td><input type="text" id="GD" size="10" onblur="updateLabel(this,  'D');"></td>
             <td><input type="text" size="40" id="LD"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'E', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'E', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'E', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'E', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'E', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'E', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'E', '0m1');">0m1</button></td>
             <td>(E)</td>
             <td><input type="text" id="GE" size="10" onblur="updateLabel(this,  'E');"></td>
             <td><input type="text" size="40" id="LE"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'F', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'F', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'F', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'F', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'F', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'F', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'F', '0m1');">0m1</button></td>
             <td>(F)</td>
             <td><input type="text" id="GF" size="10" onblur="updateLabel(this,  'F');"></td>
             <td><input type="text" size="40" id="LF"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'G', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'G', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'G', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'G', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'G', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'G', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'G', '0m1');">0m1</button></td>
             <td>(G)</td>
             <td><input type="text" id="GG" size="10" onblur="updateLabel(this,  'G');"></td>
             <td><input type="text" size="40" id="LG"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'H', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'H', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'H', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'H', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'H', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'H', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'H', '0m1');">0m1</button></td>
             <td>(H)</td>
             <td><input type="text" id="GH" size="10" onblur="updateLabel(this,  'H');"></td>
             <td><input type="text" size="40" id="LH"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'I', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'I', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'I', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'I', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'I', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'I', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'I', '0m1');">0m1</button></td>
             <td>(I)</td>
             <td><input type="text" id="GI" size="10" onblur="updateLabel(this,  'I');"></td>
             <td><input type="text" size="40" id="LI"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'J', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'J', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'J', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'J', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'J', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'J', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'J', '0m1');">0m1</button></td>
             <td>(J)</td>
             <td><input type="text" id="GJ" size="10" onblur="updateLabel(this,  'J');"></td>
             <td><input type="text" size="40" id="LJ"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'K', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'K', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'K', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'K', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'K', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'K', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'K', '0m1');">0m1</button></td>
             <td>(K)</td>
             <td><input type="text" id="GK" size="10" onblur="updateLabel(this,  'K');"></td>
             <td><input type="text" size="40" id="LK"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'L', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'L', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'L', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'L', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'L', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'L', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'L', '0m1');">0m1</button></td>
             <td>(L)</td>
             <td><input type="text" id="GL" size="10" onblur="updateLabel(this,  'L');"></td>
             <td><input type="text" size="40" id="LL"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'M', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'M', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'M', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'M', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'M', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'M', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'M', '0m1');">0m1</button></td>
             <td>(M)</td>
             <td><input type="text" id="GM" size="10" onblur="updateLabel(this,  'M');"></td>
             <td><input type="text" size="40" id="LM"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'N', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'N', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'N', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'N', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'N', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'N', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', '101');">101</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', '201');">201</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', '111');">111</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="updateInputBox(this, 'N', '0m1');">0m1</button></td>
             <td>(N)</td>
             <td><input type="text" id="GN" size="10" onblur="updateLabel(this,  'N');"></td>
             <td><input type="text" size="40" id="LN"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-secondary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'O', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'O', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'O', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'O', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'O', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'O', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'O', '0m1');">0m1</button></td>
             <td>(O)</td>
             <td><input type="text" id="GO" size="10" onblur="updateLabel(this,  'O');"></td>
             <td><input type="text" size="40" id="LO"></td>
-            <td><button onclick="CopyRow(this)">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
     </table>
     <p></p>
@@ -536,50 +539,61 @@
             <th>ClearRow</th>
         </tr>
         <tr>
-            <td><button onclick="updateInputBox(this, 'Z', '101');">101</button></td>
-            <td><button onclick="updateInputBox(this, 'Z', '201');">201</button></td>
-            <td><button onclick="updateInputBox(this, 'Z', '111');">111</button></td>
-            <td><button onclick="updateInputBox(this, 'Z', '1u1');">1u1</button></td>
-            <td><button onclick="updateInputBox(this, 'Z', 'm01');">m01</button></td>
-            <td><button onclick="updateInputBox(this, 'Z', '0m1');">0m1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', '101');">101</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', '201');">201</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', '111');">111</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', '1u1');">1u1</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', 'm01');">m01</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="updateInputBox(this, 'Z', '0m1');">0m1</button></td>
             <td>---</td>
             <td><input type="text" id="GZ" size="10" onblur="updateLabel(this,  'Z');"></td>
             <td><input type="text" size="40" id="LZ"></td>
-            <td><button onclick="CopyRow(this)" id="singlespec">CopyRow</button></td>
-            <td><button onclick="clearRow(this)">clearRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)" id="singlespec">CopyRow</button></td>
+            <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
         </tr>
     </Table>
     <h1>Other commonly used phrases</h1>
 
     <div style="text-align: center;">
-        <button style="display: inline-block; margin-right: 10px;"
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
             onclick="CopyCPT('One piece. All embedded in 1 block.');">One piece. All embedded in 1 block.</button>
-        <button style="display: inline-block; margin-right: 10px;"
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
             onclick="CopyCPT('Two pieces. All embedded in 1 block.');">Two pieces. All embedded in 1 block.</button>
-        <button style="display: inline-block;" onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple
-            pieces. All embedded in 1 block.</button>
     </div>
     <br>
     <div style="text-align: center;">
-        <button style="display: inline-block; margin-right: 10px;"
-            onclick="CopyCPT('Tiny fragment(s). All embedded in 1 block.');">Tiny fragments. All embedded in 1
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
+            onclick="CopyCPT('Multiple pieces and fragments. All embedded in 1 block.');">Multiple pieces and fragments. All embedded in 1 block.</button>
+        <button style="display: inline-block;" class="btn btn-outline-dark btn-sm" 
+            onclick="CopyCPT('Multiple pieces. All embedded in 1 block.');">Multiple pieces. All embedded in 1 block.</button>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
+            onclick="CopyCPT('Tiny fragments. All embedded in 1 block.');">Tiny fragments. All embedded in 1
             block.</button>
-        <button style="display: inline-block; margin-right: 10px;"
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
             onclick="CopyCPT('Multiple fragments. All embedded in 1 block.');">Multiple fragments. All embedded in 1
             block.</button>
     </div>
     <br>
     <div style="text-align: center;">
-        <button style="display: inline-block; margin-right: 10px;"
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
             onclick="CopyCPT('Scanty tiny fragments. All embedded in 1 block.');">Scanty tiny fragments. All embedded in
             1 block.</button>
-        <button style="display: inline-block; margin-right: 10px;"
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
             onclick="CopyCPT('Scanty fragments. All embedded in 1 block.');">Scanty fragments. All embedded in 1
             block.</button>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
+            onclick="CopyCPT('No obvious specimen seen grossly. Submitted for agar cell block preparation.');">No obvious specimen seen grossly. Submitted for agar cell block preparation.</button>
     </div>
     <footer>
         <p>-------------------------------------</p>
         <p>This HTML and Javascript are designed by WH Lau 2023</p>
+        <p>With the use of Bootstrap</p>
         <p>For Generation of All embed Gross Description </p>
         <p>Please contact me if there are bugs or any comments. Thanks.</p>
         <p>-------------------------------------</p>
