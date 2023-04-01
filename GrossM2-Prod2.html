@@ -220,13 +220,17 @@
         function statustextcopied(state) {
             if (state === '1') {
                 document.getElementById("statustext").value = 'Copied to Clipboard!';
+                document.getElementById("statustext2").value = 'Copied to Clipboard!';
                 setTimeout(function () {
                     document.getElementById("statustext").value = '';
+                    document.getElementById("statustext2").value = '';
                 }, 1000);
             } else { // i.e. === '0'
                 document.getElementById("statustext").value = 'Nothing copied to Clipboard?';
+                document.getElementById("statustext2").value = 'Nothing copied to Clipboard?';
                 setTimeout(function () {
                     document.getElementById("statustext").value = '';
+                    document.getElementById("statustext2").value = '';
                 }, 1000);
             };
         }
@@ -293,7 +297,7 @@
         </tr>
         <tr>
             <td><input type="text" style="font-size:medium" size="60" id="inputuser" autofocus></td>
-            <td><button type="button" class="btn btn-outline-primary" style="font-size:15px;" id="execute" onclick="divider()">Assign & Copy</button></td>
+            <td><button type="button" class="btn btn-outline-primary" style="font-size:12px;" id="execute" onclick="divider()">Assign & Copy</button></td>
         </tr>
         <tr>
             <td colspan="2"><label for="statustext">Status: </label><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)"
@@ -550,6 +554,10 @@
             <td><input type="text" size="40" id="LZ"></td>
             <td><button class="btn btn-outline-primary btn-sm" onclick="CopyRow(this)" id="singlespec">CopyRow</button></td>
             <td><button class="btn btn-outline-primary btn-sm" onclick="ClearRow(this)">ClearRow</button></td>
+        </tr>
+        <tr>
+            <td colspan="12"><label for="statustext">Status: </label><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)"
+                    id="statustext2"></td>
         </tr>
     </Table>
     <h1>Other commonly used phrases</h1>
