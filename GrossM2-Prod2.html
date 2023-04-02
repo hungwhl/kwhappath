@@ -258,15 +258,15 @@
 
             if (strings.length === 1) {
                 //console.log(strings.length)
-                document.getElementById('GZ').value = strings[0];
-                updateInputBox(document.getElementById('GZ'), 'Z', strings[0]);
+                document.getElementById('GZ').value = strings[0].trim();
+                updateInputBox(document.getElementById('GZ'), 'Z', strings[0].trim());
                 CopyRow(document.getElementById('singlespec'));
             } else {
                 for (var i = 0; i < 15; i++) {
                     if (i < strings.length) {
                         var textBoxId = "G" + String.fromCharCode(65 + i);
-                        document.getElementById(textBoxId).value = strings[i];
-                        updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i]);
+                        document.getElementById(textBoxId).value = strings[i].trim();
+                        updateInputBox(document.getElementById(textBoxId), String.fromCharCode(65 + i), strings[i].trim());
                     } else {
                         document.getElementById("G" + String.fromCharCode(65 + i)).value = '';
                         document.getElementById("L" + String.fromCharCode(65 + i)).value = '';
@@ -282,20 +282,22 @@
 <body>
     <h1>All Embed Gross Description Generator</h1>
     <hr>
-    <p>The format of the <b><u>cmd input</u></b> is either 3-character format <b><u>#$%</u></b> or 4-character format <b><u>#$%&</u></b>.
+    <p>The format of <b><u>cmd input</u></b> is either 3-character format <b><u>#$%</u></b> or 4-character format <b><u>#$%&</u></b>.
     </p>
     <p><b><u>#</u></b> refers to number of pieces (0-9, m/M = multiple, u/U = unspec piece(s), x/X = pieces/piece)</p>
     <p><b><u>$</u></b> refers to number of fragments (0-9, m/M = multiple, u/U = unspec fragment(s), x/X = fragments/fragment)</p>
     <p><b><u>%</u></b> refers to number of blocks embedded (0-9)</p>
     <p><b><u>&</u></b> is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
+    <p>For any <b><u>text</u></b> not following the 3-chr or 4-chr format, it will be treated as freetext. Please see an example below</p>
     <br>
-    <p><b>For Rapid Generator Command, use "," as separator</b></p>
-    <p><b>For example:</b> 101,211,0m1,m01,m01t,101s,mx1,mX1m,mu1t,No tissue seen. For Agar block preparation.,,101</p>
+    <p><b>For Rapid Command Generator, use "," as separator</b></p>
+    <p><b>For example:</b> 101, 211,0m1 ,m01,m01t ,101s,mx1    ,mX1m,mu1t,No tissue seen. For Agar block preparation.,,**pending**,101</p>
     <br>
     <hr>
+    <br>
     <table>
         <tr>
-            <th colspan="2">Rapid Generator Command</th>
+            <th colspan="2">Rapid Command Generator</th>
         </tr>
         <tr>
             <td><input type="text" style="font-size:medium" size="60" id="inputuser" autofocus></td>
@@ -561,9 +563,10 @@
         </tr>
         <tr>
             <td colspan="12"><label for="statustext">Status: </label><input type="text" style="font-size:medium; text-align: center; color:rgb(20, 143, 120)"
-                    id="statustext2"></td>
+                    id="statustext2"></td><br>
         </tr>
     </Table>
+    <hr>
     <h1>Other commonly used phrases</h1>
 
     <div style="text-align: center;">
