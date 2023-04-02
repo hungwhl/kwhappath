@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Programme designed and written by WH Lau 25.3.2023-->
+<!--Programme designed and written by WH Lau 2.4.2023-->
 <html>
 
 <head>
@@ -37,7 +37,6 @@
             margin: 0 auto;
             text-align: center;
             border-collapse: collapse;
-/*             border: 0px solid black; */
         }
 
         td {
@@ -47,12 +46,6 @@
         tr:nth-child(odd) {
             background-color: #c9bdc32a;
         }
-
-/*         th:nth-child(8),
-        td:nth-child(8) {
-            border-left: 2px solid black;
-            border-right: 2px solid black;
-        } */
 
         button {
             display: block;
@@ -101,9 +94,9 @@
         function SpecimenCreate(value) {
             if (value.length == 0) {
                 return value;
-            } else if (value.length == 3 && (/^[0-9muMU]+$/.test(value.charAt(0))) && (/^[0-9muMU]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2)))) {
+            } else if (value.length == 3 && (/^[0-9muMUxX]+$/.test(value.charAt(0))) && (/^[0-9muMUxX]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2)))) {
                 return ProcessString(value);
-            } else if (value.length == 4 && (/^[0-9muMU]+$/.test(value.charAt(0))) && (/^[0-9muMU]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2))) && (/^[smtSMT]$/.test(value.charAt(3)))) {
+            } else if (value.length == 4 && (/^[0-9muMUxX]+$/.test(value.charAt(0))) && (/^[0-9muMUxX]+$/.test(value.charAt(1))) && (/^[1-9]+$/.test(value.charAt(2))) && (/^[smtSMT]$/.test(value.charAt(3)))) {
                 return ProcessString(value);
             } else {
                 return value; //user defined text
@@ -136,6 +129,10 @@
                 tmpstrB = "Multiple pieces";
             } else if (tmpB === 'u' || tmpB === 'U') {
                 tmpstrB = "Piece(s)";
+            } else if (tmpB === 'x') {
+                tmpstrB = "Pieces";
+            } else if (tmpB === 'X') {
+                tmpstrB = "Piece";
             } else if (tmpB === '0') {
                 tmpstrB = "";
             } else if (tmpB === '1') {
@@ -149,6 +146,10 @@
                 tmpstrC = "Multiple fragments";
             } else if (tmpC === 'u' || tmpC === 'U') {
                 tmpstrC = "Fragment(s)";
+            } else if (tmpC === 'x') {
+                tmpstrC = "Fragments";
+            } else if (tmpC === 'X') {
+                tmpstrC = "Fragment";
             } else if (tmpC === '0') {
                 tmpstrC = "";
             } else if (tmpC === '1') {
@@ -280,17 +281,18 @@
 
 <body>
     <h1>All Embed Gross Description Generator</h1>
-    <p>The format of the input is either 3 character format <b><u>#$%</u></b> or 4 character format <b><u>#$%&</u></b>.
+    <hr>
+    <p>The format of the <b><u>cmd input</u></b> is either 3-character format <b><u>#$%</u></b> or 4-character format <b><u>#$%&</u></b>.
     </p>
-    <p><b><u>#</u></b> refers to number of pieces (0-9, m = multiple, u = unspecified)</p>
-    <p><b><u>$</u></b> refers to number of fragments (0-9, m = multiple, u = unspecified)</p>
+    <p><b><u>#</u></b> refers to number of pieces (0-9, m/M = multiple, u/U = unspec piece(s), x/X = pieces/piece)</p>
+    <p><b><u>$</u></b> refers to number of fragments (0-9, m/M = multiple, u/U = unspec fragment(s), x/X = fragments/fragment)</p>
     <p><b><u>%</u></b> refers to number of blocks embedded (0-9)</p>
     <p><b><u>&</u></b> is optional, is either omitted, t = tiny, m = mucoid, s = scanty</p>
     <br>
     <p><b>For Rapid Generator Command, use "," as separator</b></p>
-    <p>For example: 101,201,0m1,m01,m01t,101s</p>
+    <p><b>For example:</b> 101,211,0m1,m01,m01t,101s,mx1,mX1m,mu1t,No tissue seen. For Agar block preparation.,,101</p>
     <br>
-
+    <hr>
     <table>
         <tr>
             <th colspan="2">Rapid Generator Command</th>
@@ -305,6 +307,7 @@
         </tr>
     </table>
     <br>
+    <hr>    
     <p style="font-size: 20px;">Table 1. Multiple Specimens</p>
     <table>
         <tr>
@@ -324,7 +327,7 @@
             <th>m01</th>
             <th>0m1</th>
             <th>Label</th>
-            <th>Text Input Box</th>
+            <th>Cmd Box</th>
             <th>Output Label Box</th>
             <th>CopyRow</th>
             <th>ClearRow</th>
@@ -526,6 +529,7 @@
         </tr>
     </table>
     <p></p>
+    <hr>
     <br>
     <p style="font-size: 20px;">Table 2. Single Specimen</p>
     <Table>
@@ -537,7 +541,7 @@
             <th>m01</th>
             <th>0m1</th>
             <th>Label</th>
-            <th>Text Input Box</th>
+            <th>Cmd Box</th>
             <th>Output Label Box</th>
             <th>CopyRow</th>
             <th>ClearRow</th>
@@ -596,15 +600,18 @@
     <br>
     <div style="text-align: center;">
         <button style="display: inline-block; margin-right: 10px;" class="btn btn-outline-dark btn-sm"
-            onclick="CopyCPT('No obvious specimen seen grossly. Submitted for agar cell block preparation.');">No obvious specimen seen grossly. Submitted for agar cell block preparation.</button>
+            onclick="CopyCPT('No obvious tissue material seen grossly. Submitted for agar cell block preparation.');">No obvious tissue material seen grossly. Submitted for agar cell block preparation.</button>
     </div>
     <footer>
-        <p>-------------------------------------</p>
+        <hr>
+<!--         <p>-------------------------------------</p> -->
         <p>This HTML and Javascript are designed by WH Lau 2023</p>
         <p>With the use of Bootstrap</p>
-        <p>For Generation of All embed Gross Description </p>
+        <p>For Generation of All Embed Gross Description, KWH optimized </p>
         <p>Please contact me if there are bugs or any comments. Thanks.</p>
-        <p>-------------------------------------</p>
+        <p>Updated on 2.4.2023</p>
+<!--         <p>-------------------------------------</p> -->
+        <hr>
     </footer>
 </body>
 
