@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="bwip/bwip-js-min.js"></script>
+    <title>2D Barcode Generator</title>
+</head>
+<body>
+    <div class="container-md border">
+        <div class="row">
+            <div class="col" id="col1"><h1>2D Barcode Generator</h1></div>
+        </div>
+        <div class="row">
+        <section>
+            <form>
+                <label for="txtt">Text to be transformed</label><br>
+                <textarea id="txtt" rows="7" style="width:100ch" autofocus></textarea><br>
+                <br>
+                <label for="txtL">Text width 40-60 characters</label><br>
+                <textarea id="txtL" rows="1" style="width:5ch"></textarea><br>
+                <br>
+                <button type="button" id="GenerateBarCode" onclick="GenerateBarCode2D()">Generate Barcode</button>
+                <br>
+            </form>
+            <div style="height: 1rem;"></div>
+            <div>
+                <canvas id="barcode" width="200" height="200"></canvas>
+            </div>
+            <div style="height: 1rem;"></div>
+        </section>
+        </div>
+    </div>
+</body>
+    <footer>
+        This page uses a 2D barcode JS library from BWIP. <a href="https://github.com/metafloor/bwip-js"
+            target="_blank">https://github.com/metafloor/bwip-js</a>
+    </footer>
+    <script>
+        function GenerateBarCode2D() {
+            let description = document.getElementById("txtt").value;
+            if (description) {
+                bwipjs.toCanvas(document.getElementById('barcode'), {
+                    bcid: 'qrcode', // Use 'qrcode' for QR Code, 'datamatrix' for Data Matrix
+                    text: description,
+                    scale: 2,
+                    eclevel: 'L', // Error correction level: L, M, Q, or H
+                    includetext: false,
+                    backgroundcolor: "FFFFFF", // Background color (hexadecimal)
+                    foregroundcolor: "000000", // Foreground color (hexadecimal)
+                });
+                setTimeout(function () {
+                    alert('The following text is generated in the 2D barcode' + '\n' + 'Scan it to quickly incoporate the text' + '\n\n' + description);}, 100);
+                console.log(description);
+            } else {
+                alert("Please enter text in the box.");
+            }
+        }
+    </script>
+</body>
+</html>
