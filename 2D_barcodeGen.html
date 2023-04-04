@@ -42,7 +42,17 @@
     <script>
         function GenerateBarCode2D() {
             let description = document.getElementById("txtt").value;
+            let txtCutLen = document.getElementById("txtL").value;
+            if (txtCutLen === '') {
+                txtCutLen = 60
+            } else if (txtCutLen < 40) {
+                txtCutLen = 40
+            } else if (txtCutLen > 80) {
+                txtCutLen = 80
+            }
+
             if (description) {
+                description = cutText(description);
                 bwipjs.toCanvas(document.getElementById('barcode'), {
                     bcid: 'qrcode', // Use 'qrcode' for QR Code, 'datamatrix' for Data Matrix
                     text: description,
@@ -59,6 +69,41 @@
                 alert("Please enter text in the box.");
             }
         }
-    </script>
+        function cutText(tempstr, cutTextLen) {
+                var tempoutstr = "";
+                var lines = tempstr.split("\n");
+                for (var i = 0; i < lines.length; i++) {
+                    var words = lines[i].split(" ");
+                    var line = "     ";
+                    for (var j = 0; j < words.length; j++) {
+                        if (line.length + words[j].length > cutTextLen) {
+                            tempoutstr += line.trim() + "\n";
+                            line = "     ";
+                        }
+                        line += words[j] + " ";
+                    }
+                    tempoutstr += line.trim() + "\n";
+                }
+                return tempoutstr;
+        }
+
+        function uncutText(tempoutstr) {
+            var tempstr = "";
+            var lines = tempoutstr.split("\n");
+            for (var i = 0; i < lines.length; i++) {
+                var words = lines[i].trim().split(" ");
+                var line = "";
+                for (var j = 0; j < words.length; j++) {
+                if (line.length + words[j].length > 60) {
+                        tempstr += line.trim() + "\n";
+                        line = "";
+                    }
+                    line += words[j] + " ";
+                }
+                tempstr += line.trim() + "\n";
+            }
+            return tempstr;
+        }
+        </script>
 </body>
 </html>
