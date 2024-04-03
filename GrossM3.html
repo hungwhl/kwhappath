@@ -344,7 +344,7 @@
 <body>
     <h1>All Embed Gross Description Generator V2</h1>
     <hr>
-    <p><b>The Command consists of two parts, use "," as separator</b></p>
+    <p><b>The Command consists of two parts, use "/" as separator</b></p>
     <hr>
     <p>Part I - Either 3-character format <b><u>#$%</u></b> or 4-character format <b><u>#$%&</u></b>.</p>
     <p><b><u>#</u></b> refers to number of pieces (0-9, m/M = multiple, u/U = unspec piece(s), x/X = pieces/piece)</p>
@@ -355,7 +355,8 @@
     <p>Part II - Gross dimension part, measurement in mm, accepting characters <b><u>0-9 ~ . &lt; ></u></b>.</p>
     <p>If rightmost letter is <b><u>a (or A)</u></b>, then "xx mm in aggregate." will be used.</p>
     <hr>
-    <p>Remark: if not following the above format, it will be treated as free text.</p>
+    <p>Remark: if not following the above format, it will be treated as free text. Between 2 sublabels, use "," as separator.
+        </p>
     <hr>
     <p><b>For example:</b> 011/&lt;0.5, 211/~2,0m1/3a,m01/5,mm2t/15a ,mx1/5a,mX1m/3,mu1t/3,No tissue seen. For Agar block preparation.,,**pending**,101/1,201/2,101/1, 211/2,0m1/3a,m01/5,mm2t/15a ,mx1/5a,mm2/8.5a
     </p>
